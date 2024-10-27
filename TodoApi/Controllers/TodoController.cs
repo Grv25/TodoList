@@ -41,7 +41,7 @@ namespace TodoApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateAll([FromBody] TodoItem item, string id)
+        public IActionResult Update(string id, [FromBody] TodoItem item)
         {
             if (item == null)
             {
@@ -56,7 +56,7 @@ namespace TodoApi.Controllers
 
             item.Key = todo.Key;
 
-            TodoItems.UpdateAll(item);
+            TodoItems.Update(item, true);
             return new NoContentResult();
         }
 
@@ -76,7 +76,7 @@ namespace TodoApi.Controllers
 
             item.Key = todo.Key;
 
-            TodoItems.Update(item);
+            TodoItems.Update(item, false);
             return new NoContentResult();
         }
 

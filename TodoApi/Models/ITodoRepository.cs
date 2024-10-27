@@ -6,7 +6,6 @@
         IEnumerable<TodoItem> GetAll();
         TodoItem Find(string key);
         TodoItem Remove(string key);
-        void Update(TodoItem item);
-        void UpdateAll(TodoItem item);
+        void Update(TodoItem item, bool isFullUpdate);
     }
 }

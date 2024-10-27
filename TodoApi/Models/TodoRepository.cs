@@ -37,20 +37,21 @@ namespace TodoApi.Models
             return item;
         }
 
-        // Используем для PATCH.
-        public void Update(TodoItem item)
+        
+        public void Update(TodoItem item, bool isFullUpdate)
         {
-            if (item.Name is not null)
-                _todos[item.Key].Name = item.Name;
+            if (isFullUpdate)  // PUT.
+            {
+                _todos[item.Key] = item;
+            }
+            else  // PATCH.
+            {
+                if (item.Name is not null)
+                    _todos[item.Key].Name = item.Name;
 
-            if (item.IsComplete)
-                _todos[item.Key].IsComplete = true;
-        }
-
-        // Используем для PUT.
-        public void UpdateAll(TodoItem item)
-        {
-            _todos[item.Key] = item;  
+                if (item.IsComplete)
+                    _todos[item.Key].IsComplete = true;
+            }  
         }
     }
 }
